@@ -23,7 +23,7 @@ Este é um aplicativo de e-commerce desenvolvido para facilitar a compra e venda
     ```
 2. Navegue até o diretório do projeto:
     ```bash
-    cd ecommerce-app
+    cd ecommerce-mkt-backend
     ```
 3. Instale as dependências:
     ```bash
