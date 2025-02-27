@@ -11,7 +11,7 @@ Este é um aplicativo de e-commerce desenvolvido para facilitar a compra e venda
 - Histórico de pedidos
 
 ## Tecnologias Utilizadas
-- Frontend: React, Redux
+- Frontend: React
 - Backend: Node.js, Express
 - Banco de Dados: MongoDB
 - Autenticação: JWT
@@ -19,7 +19,7 @@ Este é um aplicativo de e-commerce desenvolvido para facilitar a compra e venda
 ## Instalação
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/ecommerce-app.git
+    git clone https://github.com/seu-usuario/ecommerce-mkt-backend.git
     ```
 2. Navegue até o diretório do projeto:
     ```bash
