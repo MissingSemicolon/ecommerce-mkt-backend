@@ -19,11 +19,11 @@ Este é um aplicativo de e-commerce desenvolvido para facilitar a compra e venda
 ## Instalação
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/ecommerce-mkt-backend.git
+    git clone https://github.com/MissingSemicolon/ecommerce-mkt-backend.git
     ```
 2. Navegue até o diretório do projeto:
     ```bash
-    cd ecommerce-app
+    cd ecommerce-mkt-backend
     ```
 3. Instale as dependências:
     ```bash
