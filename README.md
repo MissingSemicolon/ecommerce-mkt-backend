@@ -11,7 +11,7 @@ Este é um aplicativo de e-commerce desenvolvido para facilitar a compra e venda
 - Histórico de pedidos
 
 ## Tecnologias Utilizadas
-- Frontend: React, Redux
+- Frontend: React
 - Backend: Node.js, Express
 - Banco de Dados: MongoDB
 - Autenticação: JWT
