@@ -1,14 +1,18 @@
 import express from 'express';
-import apiKeyMiddleware from '../auth/api-key.middleware';
+import productController from '../controllers/product.controller';
+import jwtMiddleware from '../auth/jwt.middleware';
 
 const router = express.Router();
 
-router.post("/register", apiKeyMiddleware, (req, res) => {
-    res.json({ message: "Registro de produtos acessado com sucesso!" });
-});
 
-router.get("/list", apiKeyMiddleware, (req, res) => {
-    res.json({ message: "Lista de produtos acessada com sucesso!" });
-});
+router.get("/list", productController.getAllProducts)
+
+router.get("/:id", productController.getProductById)
+
+router.post("/register", jwtMiddleware, productController.registerProduct)
+
+router.delete("/:id", jwtMiddleware, productController.deleteProduct)
+
+router.put("/:id", jwtMiddleware, productController.updateProduct)
 
 export default router;
