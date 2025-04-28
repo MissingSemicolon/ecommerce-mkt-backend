@@ -6,6 +6,7 @@ import { setupSwagger } from "./swagger";
 import connectDB from "./config/db";
 import accountRoutes from "./routes/account.routes";
 import productRoutes from "./routes/product.routes";
+import categoryRoutes from "./routes/category.routes";
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,7 @@ connectDB();
 // Rotas
 app.use("/account", accountRoutes);
 app.use("/products", productRoutes);
+app.use("/categories", categoryRoutes);
 
 // Configuração do Swagger
 setupSwagger(app);
