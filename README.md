@@ -5,14 +5,15 @@ Este é um aplicativo de e-commerce desenvolvido para facilitar a compra e venda
 
 ## Funcionalidades
 - Cadastro de usuários
+- Login de usuários
+- Cadastro de categorias
+- Listagem de categorias
+- Cadastro de produtos
 - Listagem de produtos
-- Carrinho de compras
-- Pagamento online
-- Histórico de pedidos
 
 ## Tecnologias Utilizadas
 - Frontend: React
-- Backend: Node.js, Express
+- Backend: Node.js, Express, Exprees-validator, Swagger, JestJS, BCrypt, 
 - Banco de Dados: MongoDB
 - Autenticação: JWT
 
