@@ -28,4 +28,10 @@ const loginUser = async (email: string, password: string) => {
   return { token, user };
 };
 
-export default { registerUser, loginUser };
+const getUserRoleById = async (id: string) => {
+  const user = await User.findById(id).select("role");
+  if (!user) throw new Error("Usuário não encontrado"); 
+  return user.role;
+}
+
+export default { registerUser, loginUser, getUserRoleById };
