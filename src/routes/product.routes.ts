@@ -1,7 +1,7 @@
-import express from 'express';
-import productController from '../controllers/product.controller';
-import jwtMiddleware from '../auth/jwt.middleware';
-import onlyAdmin from '../auth/admin.middleware';
+import express from "express";
+import productController from "../controllers/product.controller";
+import jwtMiddleware from "../auth/jwt.middleware";
+import onlyAdmin from "../auth/admin.middleware";
 
 const router = express.Router();
 
@@ -88,7 +88,12 @@ router.get("/:id", productController.getProductById);
  *       400:
  *         description: Erro ao registrar o produto.
  */
-router.post("/register", jwtMiddleware, onlyAdmin, productController.registerProduct);
+router.post(
+  "/register",
+  jwtMiddleware,
+  onlyAdmin,
+  productController.registerProduct
+);
 
 /**
  * @swagger
@@ -106,7 +111,7 @@ router.post("/register", jwtMiddleware, onlyAdmin, productController.registerPro
  *         schema:
  *           type: string
  *         description: ID do produto
-*       - in: header
+ *       - in: header
  *         name: Authorization
  *         required: true
  *         schema:
@@ -118,7 +123,12 @@ router.post("/register", jwtMiddleware, onlyAdmin, productController.registerPro
  *       404:
  *         description: Produto não encontrado.
  */
-router.delete("/:id", jwtMiddleware, onlyAdmin, productController.deleteProduct);
+router.delete(
+  "/:id",
+  jwtMiddleware,
+  onlyAdmin,
+  productController.deleteProduct
+);
 
 /**
  * @swagger
