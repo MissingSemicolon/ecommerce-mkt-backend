@@ -28,4 +28,4 @@ app.use("/wishlist", wishlistRoutes)
 // Configuração do Swagger
 setupSwagger(app);
 
-export default app;
+export default app;
