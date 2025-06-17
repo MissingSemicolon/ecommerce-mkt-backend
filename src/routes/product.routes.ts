@@ -75,13 +75,6 @@ router.get("/:id", productController.getProductById);
  *                 type: string
  *               category:
  *                 type: string
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *         description: Token JWT para autenticação
  *     responses:
  *       201:
  *         description: Produto registrado com sucesso.
@@ -111,12 +104,6 @@ router.post(
  *         schema:
  *           type: string
  *         description: ID do produto
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *         description: Token JWT para autenticação
  *     responses:
  *       200:
  *         description: Produto excluído com sucesso.
@@ -144,12 +131,6 @@ router.delete(
  *         schema:
  *           type: string
  *         description: ID do produto
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *         description: Token JWT para autenticação
  *     requestBody:
  *       required: true
  *       content:

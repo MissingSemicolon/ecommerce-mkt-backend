@@ -45,20 +45,18 @@ router.get("/list", categoryController.getAllCategories);
  *             properties:
  *               name:
  *                 type: string
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *         description: Token JWT para autenticação
  *     responses:
  *       201:
  *         description: Categoria registrada com sucesso.
  *       400:
  *         description: Erro ao registrar a categoria.
  */
-router.post("/register", jwtMiddleware, onlyAdmin, categoryController.registerCategory);
+router.post(
+  "/register",
+  jwtMiddleware,
+  onlyAdmin,
+  categoryController.registerCategory
+);
 
 /**
  * @swagger
@@ -76,18 +74,17 @@ router.post("/register", jwtMiddleware, onlyAdmin, categoryController.registerCa
  *         schema:
  *           type: string
  *         description: ID da categoria
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *         description: Token JWT para autenticação
  *     responses:
  *       200:
  *         description: Categoria excluída com sucesso.
  *       404:
  *         description: Categoria não encontrada.
  */
-router.delete("/:id", jwtMiddleware, onlyAdmin, categoryController.deleteCategory);
+router.delete(
+  "/:id",
+  jwtMiddleware,
+  onlyAdmin,
+  categoryController.deleteCategory
+);
 
 export default router;

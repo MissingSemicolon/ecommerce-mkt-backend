@@ -1,5 +1,8 @@
 import express from 'express';
-import userControlller from '../controllers/user.controller';
+import { body } from 'express-validator';
+import userController from '../controllers/user.controller';
+import jwtMiddleware from '../auth/jwt.middleware';
+import onlyAdmin from '../auth/admin.middleware';
 
 const router = express.Router();
 
@@ -36,8 +39,48 @@ const router = express.Router();
  *       400:
  *         description: Erro ao registrar usuário.
  */
-router.post('/register', userControlller.register); // Rota para registro do usuário
+router.post(
+    "/register",
+    [
+        body("name").notEmpty().withMessage("O campo 'name' é obrigatório."),
+        body("email").isEmail().withMessage("O campo 'email' deve ser um email válido."),
+        body("password").isLength({ min: 6 }).withMessage("O campo 'password' deve ter pelo menos 6 caracteres."),
+    ], userController.register
+);
 
+/**
+ * @swagger
+ * /account/register/admin:
+ *   post:
+ *     summary: Registra um novo administrador
+ *     description: Cria uma nova conta de administrador.
+ *     tags: [Account]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Administrador registrado com sucesso.
+ *       400:
+ *         description: Erro ao registrar administrador.
+ */
+router.post("/register/admin", 
+    [
+        body("name").notEmpty().withMessage("O campo 'name' é obrigatório."),
+        body("email").isEmail().withMessage("O campo 'email' deve ser um email válido."),
+        body("password").isLength({ min: 6 }).withMessage("O campo 'password' deve ter pelo menos 6 caracteres."),
+    ], jwtMiddleware, onlyAdmin, userController.registerAdmin
+)
 /**
  * @swagger
  * /account/login:
@@ -62,6 +105,9 @@ router.post('/register', userControlller.register); // Rota para registro do usu
  *       400:
  *         description: Erro ao fazer login.
  */
-router.post('/login', userControlller.login); // Rota para login do usuário
+router.post('/login', [
+        body("email").isEmail().withMessage("O campo 'email' deve ser um email válido."),
+        body("password").notEmpty().withMessage("O campo 'password' é obrigatório.")
+    ], userController.login); 
 
 export default router;

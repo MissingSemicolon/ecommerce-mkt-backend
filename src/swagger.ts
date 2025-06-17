@@ -10,9 +10,24 @@ const options = {
       version: "1.0.0",
       description: "Documentação da API do E-commerce",
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
   apis: ["./src/routes/*.ts"],
 };
+
 
 const swaggerSpec = swaggerJsdoc(options);
 
