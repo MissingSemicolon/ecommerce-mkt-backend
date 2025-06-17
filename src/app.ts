@@ -23,6 +23,7 @@ connectDB();
 app.use("/account", accountRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
+app.use("/wishlist", wishlistRoutes)
 
 // Configuração do Swagger
 setupSwagger(app);
