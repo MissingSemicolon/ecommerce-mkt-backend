@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 interface IProduct extends mongoose.Document {
-    name: String;
-    description: String;
-    price: Number;
-    stock: Number;
-    category: String;
+    name: string;
+    description: string;
+    price: number;
+    stock: number;
+    category: string;
     createdAt: Date;
     updatedAt: Date;
 }
