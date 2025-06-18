@@ -1,49 +1,167 @@
-# E-commerce App
+# 🛒 E-commerce MKT Backend
 
-## Descrição
-Este é um aplicativo de e-commerce desenvolvido para facilitar a compra e venda de produtos online.
+Este projeto é uma API RESTful para um sistema de e-commerce, desenvolvida em Node.js com TypeScript, MongoDB e Express. Ela oferece endpoints para gerenciamento de usuários, produtos, categorias e wishlists, além de autenticação JWT e documentação Swagger.
 
-## Funcionalidades
-- Cadastro de usuários
-- Login de usuários
-- Cadastro de categorias
-- Listagem de categorias
-- Cadastro de produtos
-- Listagem de produtos
+---
 
-## Tecnologias Utilizadas
-- Frontend: React
-- Backend: Node.js, Express, Exprees-validator, Swagger, JestJS, BCrypt, 
-- Banco de Dados: MongoDB
-- Autenticação: JWT
+## ✨ Principais Funcionalidades
 
-## Instalação
-1. Clone o repositório:
-    ```bash
-    git clone https://github.com/MissingSemicolon/ecommerce-mkt-backend.git
-    ```
-2. Navegue até o diretório do projeto:
-    ```bash
-    cd ecommerce-mkt-backend
-    ```
-3. Instale as dependências:
-    ```bash
-    npm install
-    ```
+- 👤 *Cadastro e autenticação de usuários* (JWT)
+- 📦 *Gerenciamento de produtos* (CRUD)
+- 🏷 *Gerenciamento de categorias* (CRUD)
+- 💖 *Wishlist*: associação de produtos a uma lista de desejos por usuário
+- ✅ *Validação de dados* com express-validator
+- 🔒 *Criptografia de Repouso* com bcrypt
+- 📄 *Documentação* com Swagger
 
-## Uso
-1. Inicie o servidor de desenvolvimento:
-    ```bash
-    npm start
-    ```
-2. Abra o navegador e acesse `http://localhost:3000`.
+---
 
-## Contribuição
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Faça o push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
+## 🛠 Tecnologias Utilizadas
 
-## Licença
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+- ⚡ *Node.js* & *TypeScript*
+- 🚀 *Express*
+- 🍃 *MongoDB* (Mongoose)
+- 🔑 *JWT* para autenticação
+- 🔒 *bcrypt* para criptografia de senhas
+- 🛡 *express-validator* para validação de dados
+- 📚 *Swagger* para documentação da API
+- 🧪 *Jest* para testes automatizados
+
+---
+
+## 📁 Estrutura de Pastas
+
+
+src/
+  auth/
+  config/
+  controllers/
+  dtos/
+  models/
+  repositories/
+  routes/
+  seeders/
+  services/
+  tests/
+  app.ts
+  server.ts
+  swagger.ts
+
+
+---
+
+## 🔗 Endpoints Principais
+
+### 👤 Usuário / Conta
+
+- POST /account/register  
+  Cadastro de novo usuário
+
+- POST /account/register/admin  
+  Cadastro de novo administrador (exige autenticação JWT)  
+
+- POST /account/login  
+  Login de usuário e obtenção de token JWT
+
+---
+
+### 📦 Produtos
+
+- GET /products/list  
+  Lista todos os produtos
+
+- GET /products/:id 
+  Busca produto pelo ID
+
+- POST /products/register
+  Cria novo produto (requer autenticação e perfil admin)
+
+- PUT /products/:id
+  Atualiza produto (requer autenticação e perfil admin)
+
+- DELETE /products/:id
+  Remove produto (requer autenticação e perfil admin)
+
+---
+
+### 🏷 Categorias
+
+- GET /categories/list
+  Lista todas as categorias
+
+- POST /categories/register  
+  Cria nova categoria (requer autenticação e perfil admin)
+
+- DELETE /categories/:id  
+  Remove categoria (requer autenticação e perfil admin)
+
+---
+
+### 💖 Wishlist
+
+- GET /wishlist (exige autenticação JWT)  
+  Busca wishlist do usuário autenticado
+
+- POST /wishlist/add  (exige autenticação JWT)   
+  Adiciona produto à wishlist do usuário autenticado
+
+- POST /wishlist/remove (exige autenticação JWT)   
+  Remove produto da wishlist do usuário autenticado
+
+---
+
+### 📝 Pré-requisitos
+
+- NodeJS
+- Database MongoDB
+
+---
+
+## ▶ Como rodar o projeto
+
+1. *Clone o repositório*  
+   
+   git clone https://github.com/MissingSemicolon/ecommerce-mkt-backend
+   
+2. *Instale as dependências*
+   
+   npm install
+   
+3. *Configure as variáveis de ambiente*  
+   Crie um arquivo .env com as variáveis necessárias (ex: MONGO_URI, JWT_SECRET).
+   <br>
+4. *Rode os seeders para facilitar testes e acessos*  
+   
+   npm run seed
+   
+5. *Inicie o servidor*
+   
+   npm run dev
+   
+6. *Acesse a documentação Swagger*  
+   [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
+
+---
+
+## 🧪 Testes
+
+Execute os testes automatizados com:
+
+npm test
+
+
+---
+
+## ⚠ Observações
+
+- O projeto utiliza autenticação JWT para rotas protegidas.
+- Apenas usuários com perfil admin podem cadastrar, atualizar, remover produtos e categorias e cadastrar novos administradores.
+- A wishlist é criada automaticamente ao adicionar o primeiro produto e removida quando fica vazia.
+
+---
+
+## 📚 Documentação
+
+A documentação completa dos endpoints está disponível via Swagger em /api-docs após iniciar o servidor.
+
+---

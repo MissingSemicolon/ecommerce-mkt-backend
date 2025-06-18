@@ -1,7 +1,7 @@
-import express from 'express';
-import productController from '../controllers/product.controller';
-import jwtMiddleware from '../auth/jwt.middleware';
-import onlyAdmin from '../auth/admin.middleware';
+import express from "express";
+import productController from "../controllers/product.controller";
+import jwtMiddleware from "../auth/jwt.middleware";
+import onlyAdmin from "../auth/admin.middleware";
 
 const router = express.Router();
 
@@ -75,20 +75,18 @@ router.get("/:id", productController.getProductById);
  *                 type: string
  *               category:
  *                 type: string
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *         description: Token JWT para autenticação
  *     responses:
  *       201:
  *         description: Produto registrado com sucesso.
  *       400:
  *         description: Erro ao registrar o produto.
  */
-router.post("/register", jwtMiddleware, onlyAdmin, productController.registerProduct);
+router.post(
+  "/register",
+  jwtMiddleware,
+  onlyAdmin,
+  productController.registerProduct
+);
 
 /**
  * @swagger
@@ -106,19 +104,18 @@ router.post("/register", jwtMiddleware, onlyAdmin, productController.registerPro
  *         schema:
  *           type: string
  *         description: ID do produto
-*       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *         description: Token JWT para autenticação
  *     responses:
  *       200:
  *         description: Produto excluído com sucesso.
  *       404:
  *         description: Produto não encontrado.
  */
-router.delete("/:id", jwtMiddleware, onlyAdmin, productController.deleteProduct);
+router.delete(
+  "/:id",
+  jwtMiddleware,
+  onlyAdmin,
+  productController.deleteProduct
+);
 
 /**
  * @swagger
@@ -134,12 +131,6 @@ router.delete("/:id", jwtMiddleware, onlyAdmin, productController.deleteProduct)
  *         schema:
  *           type: string
  *         description: ID do produto
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *         description: Token JWT para autenticação
  *     requestBody:
  *       required: true
  *       content:

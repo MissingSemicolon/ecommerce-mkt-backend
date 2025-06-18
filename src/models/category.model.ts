@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 interface ICategory extends mongoose.Document {
-    name: String;
+    name: string;
     createdAt: Date;
 }; 
 

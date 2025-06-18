@@ -1,25 +1,23 @@
 import { Request, Response } from "express";
 import UserService from "../services/user.service";
-import validationService from "../services/validation.service";
+import { RegisterUserDTO, LoginUserDTO, RegisterUserAdminDTO } from "../dto/user.dto";
 
 const register = async (req: Request, res: Response) => {
   try {
-    const { name, email, password } = req.body;
+    const userData: RegisterUserDTO = req.body;
+    const user = await UserService.registerUser({...userData, email: userData.email.toLowerCase().trim()});
+    res.status(201).json(user);
+  } catch (error: any) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-    if(!email || !validationService.validateEmail(email) ){
-      const user = await UserService.registerUser(name, email.toLowerCase().trim(), password);
-      res.status(400).json({ 
-        error: "Formato de email inválido",
-        message: "O email informado não é válido. Por favor, informe um email válido."
-      })
-    };
-      
-    if(validationService.validateEmail(email)){
-      const user = await UserService.registerUser(name, email.toLowerCase().trim(), password);
-      res.status(201).json(user);
-    };
-
-    
+const registerAdmin = async (req: Request, res: Response) => {
+  try {
+    const userData: RegisterUserAdminDTO = req.body;
+    const user = await UserService.registerUserAdmin({...userData, email: userData.email.toLowerCase().trim(),
+    });
+    res.status(201).json(user);
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
@@ -27,15 +25,15 @@ const register = async (req: Request, res: Response) => {
 
 const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
-    const user = await UserService.loginUser(email, password);
+    const loginData: LoginUserDTO = req.body;
+    const user = await UserService.loginUser(loginData);
     res.json(user);
   } catch (error: any) {
     res.status(400).json({
       error: error.cause,
-      message: error.message
+      message: error.message,
     });
   }
 };
 
-export default { register, login };
+export default { register, login, registerAdmin };

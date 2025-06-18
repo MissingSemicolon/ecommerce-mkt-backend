@@ -1,26 +1,26 @@
-import Category from "../models/category.model";
+import { CreateCategoryDTO } from "../dto/category.dto";
+import CategoryRepository from "../repositories/category.repository";
 
-const registerCategory = async (category: any) => {
-    const existingCategory = await Category.findOne({ name: category.name });
-    if (existingCategory) {
-        throw new Error("Categoria já existe.");
-    }
-    const newCategory = new Category(category);
-    await newCategory.save();
-    return newCategory;
-}
+const registerCategory = async (category: CreateCategoryDTO) => {
+  const existingCategory = await CategoryRepository.findByName(category.name);
+  if (existingCategory) {
+    throw new Error("Categoria já existe.");
+  }
+  const newCategory = await CategoryRepository.create(category);
+  return newCategory;
+};
 
 const deleteCategory = async (id: string) => {
-    const category = await Category.findByIdAndDelete(id);
-    if (!category) {
-        throw new Error("Categoria não encontrada.");
-    }
-    return category;
-}
+  const category = await CategoryRepository.deleteById(id);
+  if (!category) {
+    throw new Error("Categoria não encontrada.");
+  }
+  return category;
+};
 
 const getAllCategories = async () => {
-    const categories = await Category.find();
-    return categories;
-}
+  const categories = await CategoryRepository.findAll();
+  return categories;
+};
 
-export default { registerCategory, deleteCategory, getAllCategories };
+export default { registerCategory, deleteCategory, getAllCategories };
